@@ -1,0 +1,46 @@
+<div class="container-fluid">
+	<ol class="breadcrumb">
+		<li>
+			<a href="/">Customer Details</a>
+		</li>
+		<li class="active">
+			Product Details
+		</li>
+	</ol>
+
+	<form class="form" action="/" method="POST">
+
+		<div class="col-md-12">
+			<div class="panel panel-default col-lg-6">
+				<div class="panel-body">
+					<textarea placeholder="Product description..." style="height:200px;width:100%;" value="">
+						
+					</textarea>
+					<p>
+						<div class="input-group input-group">
+							<span class="input-group-addon" id="product_price">R</span>
+							<input type="text" class="form-control" placeholder="Product Price" aria-describedby="product_price">
+						</div>
+					</p>
+				</div>
+			</div>
+
+			<div class="panel panel-default col-lg-6">
+				<div class="panel-body">
+					<p>
+						<div class="input-group input-group">
+							<span class="input-group-addon" id="date">YYYY/mm/dd</span>
+							<input type="date" class="form-control" placeholder="Service Date" aria-describedby="date">
+						</div>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-12 pull-right">
+			<button class="btn btn-success" type="submit">Save</button>
+			<button class="btn btn-warning">Cancel</button>	
+		</div>
+	</form>
+
+</div>

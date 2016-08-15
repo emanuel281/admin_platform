@@ -1,0 +1,13 @@
+{
+    "host"     : "127.0.0.1",
+    "user"     : "root",
+    "password" : "MysqlServer123",
+    "database" : "emwc",
+    "connectionLimit": 100,
+    "useTransaction": {
+        "connectionLimit": 1
+    },
+    "useCursor": {
+    	"connectionLimit": 1
+    }
+}
