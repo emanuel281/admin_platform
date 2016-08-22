@@ -1,0 +1,39 @@
+<div class="container-fluid">
+
+	<ol class="breadcrumb">
+		<li>
+			<a href="/">Home</a>
+		</li>
+		<li class="active">
+			Products
+		</li>
+	</ol>
+
+	<div class="container-fluid">
+
+		<ul class="nav nav-pills">
+			<li role="presentation" class="active">
+				<a href="/add/product">Add Product</a>
+			</li>
+		</ul>
+
+	</div>
+
+	<table class="table table-striped">
+
+		<thead>
+			<th>Product</th>
+		</thead>
+		<tbody>
+			{{#each productList}}
+
+				<tr>
+					<td>{{this.product_name}}</td><td><a href="/edit/product/{{this.id}}">Edit</a></td>
+				</tr>
+
+			{{/each}}
+		</tbody>
+
+	</table>
+
+</div>

@@ -2,12 +2,15 @@
 
 	<ol class="breadcrumb">
 		<li>
-			<a href="/">List Customers</a>
+			<a href="/">Home</a>
+		</li>
+		<li>
+			<a href="/customers">Customers</a>
 		</li>
 		<li class="active">New Customer</li>
 	</ol>
 
-	<form class="form" action="/" method="GET">
+	<form class="form" action="/add/customer" method="POST">
 
 		<div class="col-md-12">
 
@@ -17,10 +20,6 @@
 					<li role="presentation" class="">
 						<a href="#personal-info" id="personal-info-tab" role="tab" data-toggle="tab" aria-controls="personal-info" aria-expanded="false">Personal Info</a>
 					</li>
-
-					<li role="presentation" class="active">
-						<a href="#address" role="tab" id="address-tab" data-toggle="tab" aria-controls="address" aria-expanded="false">address</a>
-					</li>
 				</ul>
 
 				<div class="tab-content" id="myTabContent">
@@ -29,28 +28,13 @@
 							<div class="panel-body">
 
 								<div class="input-group">
-								  <span style="width:100px" class="input-group-addon" id="company_name">Company</span>
-								  <input style="width:300px" type="text" class="form-control" name="company_name" placeholder="" aria-describedby="company_name">
+								  <span style="width:100px" class="input-group-addon" id="company">Company</span>
+								  <input style="width:300px" type="text" class="form-control" name="company" placeholder="" aria-describedby="company">
 								</div>
 
 								<div class="input-group">
-								  <span style="width:100px" class="input-group-addon" id="contact_person">Contact</span>
-								  <input style="width:300px" type="text" class="form-control" placeholder="" aria-describedby="contact_person" name="fullname">
-								</div>
-
-								<div class="input-group">
-								  <span style="width:100px" class="input-group-addon" id="title">Title</span>
-								  <input style="width:300px" name="title" type="text" class="form-control" placeholder="" aria-describedby="title">
-								</div>
-
-								<div class="input-group">
-								  <span style="width:100px" class="input-group-addon" id="dept">Dept.</span>
-								  <input style="width:300px" name="dept" type="text" class="form-control" placeholder="dept" aria-describedby="dept">
-								</div>
-
-								<div class="input-group">
-								  <span style="width:100px" class="input-group-addon" id="title">Title</span>
-								  <input style="width:300px" name="title" type="text" class="form-control" placeholder="" aria-describedby="title">
+								  <span style="width:100px" class="input-group-addon" id="contact">Contact</span>
+								  <input style="width:300px" type="text" class="form-control" placeholder="" aria-describedby="contact" name="contact">
 								</div>
 
 								<div class="input-group">
@@ -64,23 +48,34 @@
 								</div>
 
 								<div class="input-group">
-								  <span style="width:100px" class="input-group-addon" id="website">Website</span>
-								  <input style="width:300px" name="website" type="text" class="form-control" placeholder="" aria-describedby="website">
+								  <span style="width:100px" class="input-group-addon" id="product_name">Product</span>
+								  <input style="width:300px" name="product_name" type="text" class="form-control" placeholder="" aria-describedby="product_name">
 								</div>
+
+								<div class="input-group">
+								  <span style="width:100px" class="input-group-addon" id="invoice_link">Invoice</span>
+								  <input style="width:300px" name="invoice_link" type="text" class="form-control" placeholder="" aria-describedby="invoice_link">
+								</div>
+
+								<div class="input-group">
+								  <span style="width:100px" class="input-group-addon" id="comments">Comments</span>
+								  <textarea style="width:300px" name="comments" type="text" class="form-control" placeholder="" aria-describedby="comments"></textarea>
+								</div>
+
 							</div>	
 						</div>
 
 						<div class="col-md-12 pull-right">
 							<div  id="next-detail">
-							<a class="btn btn-success col-md-2" href="#address" role="tab" id="address-tab" data-toggle="tab" aria-controls="address" aria-expanded="false">Next</a>
+								<button class="btn btn-success col-md-2">Save</button>
 							</div>
 							
-							<a href="/" class="btn btn-default col-md-offset-1">cancel</a>
+							<a href="/customers" class="btn btn-default col-md-offset-1">cancel</a>
 						</div>
 
 					</div>
 
-					<div class="tab-pane fade" role="tabpanel" id="address" aria-labelledby="address-tab">
+					{{!-- <div class="tab-pane fade" role="tabpanel" id="address" aria-labelledby="address-tab">
 						<div class="panel panel-default col-md-6">
 							<div class="panel-body">
 
@@ -121,7 +116,7 @@
 							<a href="/" class="btn btn-default col-md-offset-1">Cancel</a>
 						</div>
 
-					</div>
+					</div> --}}
 				</div>
 			</div>
 			

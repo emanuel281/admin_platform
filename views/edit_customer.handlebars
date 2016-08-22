@@ -1,0 +1,93 @@
+<div class="container-fluid">
+
+	<ol class="breadcrumb">
+		<li>
+			<a href="/">Home</a>
+		</li>
+		<li>
+			<a href="/customers">Customers</a>
+		</li>
+		<li class="active">Edit Customer</li>
+	</ol>
+
+	{{#each customerList}}
+	<form class="form" action="/edit/customer/{{this.id}}" method="POST">
+	{{/each}}
+		<div class="col-md-12">
+
+			<div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+				<ul class="nav nav-tabs" id="myTabs" role="tablist">
+					
+					<li role="presentation" class="">
+						<a href="#personal-info" id="personal-info-tab" role="tab" data-toggle="tab" aria-controls="personal-info" aria-expanded="false">Personal Info</a>
+					</li>
+				</ul>
+
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade" role="tabpanel" id="personal-info" aria-labelledby="personal-info-tab">
+						<div class="panel panel-default col-md-6">
+							<div class="panel-body">
+
+								{{#each customerList}}
+								<div class="input-group">
+								  <span style="width:100px" class="input-group-addon" id="company">Company</span>
+								  <input style="width:300px" type="text" class="form-control" name="company" placeholder="" value="{{this.company}}" aria-describedby="company">
+								</div>
+
+								<div class="input-group">
+								  <span style="width:100px" class="input-group-addon" id="contact">Contact</span>
+								  <input style="width:300px" type="text" class="form-control" placeholder="" aria-describedby="contact" value="{{this.contact}}" name="contact">
+								</div>
+
+								<div class="input-group">
+								  <span style="width:100px" class="input-group-addon" id="phone">Phone</span>
+								  <input style="width:300px" name="phone" type="text" class="form-control" placeholder="" value="{{this.phone}}" aria-describedby="phone">
+								</div>
+
+								<div class="input-group">
+								  <span style="width:100px" class="input-group-addon" id="email">E-mail</span>
+								  <input style="width:300px" name="email" type="text" class="form-control" placeholder="" value="{{this.email}}" aria-describedby="email">
+								</div>
+								{{/each}}
+
+								{{#each productList}}
+								
+								<input name="product_id" type="number" value="{{this.product_id}}" hidden>
+								<input type="number" name="customer_id" value="{{this.customer_id}}" hidden>
+								<input name="transaction_id" type="number" value="{{this.id}}" hidden>
+
+								<div class="input-group">
+								  <span style="width:100px" class="input-group-addon" id="product_name">Product</span>
+								  <input style="width:300px" name="product_name" type="text" class="form-control" placeholder="" value="{{this.product_name}}" aria-describedby="product_name">
+								</div>
+
+								<div class="input-group">
+								  <span style="width:100px" class="input-group-addon" id="invoice_link">Invoice</span>
+								  <input style="width:300px" name="invoice_link" type="text" class="form-control" placeholder="" value="{{this.invoice_link}}" aria-describedby="invoice_link">
+								</div>
+
+								<div class="input-group">
+								  <span style="width:100px" class="input-group-addon" id="comments">Comments</span>
+								  <textarea style="width:300px" name="comments" type="text" class="form-control" placeholder="" aria-describedby="comments">{{this.invoice_link}}</textarea>
+								</div>
+								{{/each}}
+
+							</div>	
+						</div>
+
+						<div class="col-md-12 pull-right">
+							<div  id="next-detail">
+							<button class="btn btn-success col-md-2">Save</button>
+							</div>
+							
+							<a href="/customers" class="btn btn-default col-md-offset-1">cancel</a>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+			
+		</div>
+	</form>
+</div>
