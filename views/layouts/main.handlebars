@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Admin Platform</title>
+		<title>EMWC</title>
 
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 
@@ -16,33 +16,6 @@
 		<link rel="stylesheet" type="text/css" href="/fullcalendar/fullcalendar.print.css">
 		<script type="text/javascript" src="/moment/moment.min.js"></script>
 		<script type="text/javascript" src="/fullcalendar/fullcalendar.min.js"></script>
-
-		<script type="text/javascript" >
-			$(document).ready(function(){
-
-				$('#calendar').fullCalendar({
-					theme : true,
-					businessHours : true,
-					editable : true,
-					header : {
-						left : 'prev,next,today',
-						center : 'title',
-						right : 'month,agendaWeek,agendaDay'
-					},
-					events : function(start, end, timezone, callback){
-						$.get('/calendar/events', 
-							{
-								start_date : '2016-08-24 00:15:00',
-								end_date : '2016-08-24 00:30:00',
-								timezone : timezone
-							}, 
-							function(events){
-								callback(events)
-							});
-					}
-				});
-			});
-		</script>
 
 		<style type="text/css">
 			li[role="presentation"] {
@@ -64,7 +37,7 @@
 			                <span class="icon-bar"></span>
 			                <span class="icon-bar"></span>
 			            </button>
-			            <a class="navbar-brand page-scroll" href="/">Admin Platform</a>
+			            <a class="navbar-brand page-scroll" href="/">EMWC</a>
 			        </div>
 
 			        <!-- Collect the nav links, forms, and other content for toggling -->

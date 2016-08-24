@@ -14,7 +14,8 @@ module.exports = {
 						"on tbl_customer.id = customer_id " +
 						"join tbl_product " +
 						"on tbl_product.id = product_id " +
-						"where customer_id = ?",
+						"where customer_id = ? " +
+						"and active = 1",
 						customer_id,
 						function(err, results){
 							if (err) throw err;

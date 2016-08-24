@@ -6,9 +6,14 @@ module.exports = {
 
 		connectionPool(function(conn){
 
-			conn.query("select id, transaction_id, start, end, title, period " + 
+			conn.query("select tbl_service_manager.id, transaction_id, start, end, tbl_service_manager.title, period " + 
 						"from tbl_service_manager " +
-						"where date(start) between date(?) and date(?)", [start, end], 
+						"join tbl_transaction " +
+						"on tbl_transaction.id = transaction_id " +
+						"join tbl_customer " +
+						"on tbl_customer.id = customer_id " +
+						"where date(start) between date(?) and date(?) " +
+						"and active = 1", [start, end], 
 						function(err, results){
 						
 							if(err) throw err;
