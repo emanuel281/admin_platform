@@ -17,7 +17,8 @@ var dataServices = require('./services/dataServices.js');
 // var usefulFunctions = require('./services/usefulFunctions.js');
 var customerData = require('./services/customerData.js'),
 	transactionData = require('./services/transactionData.js')
-	productData = require('./services/productData.js');
+	productData = require('./services/productData.js'),
+	serviceManager = require('./services/serviceManager.js');
 
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -44,9 +45,17 @@ app.get('/add/customer', function (req, res) {
 
 app.post('/add/customer', function (req, res) {
 
-	dataServices.insertTransaction(req.body, function(){
+	dataServices.insertTransaction(req.body, function(results){
 
-		res.redirect('/customers');
+		var cust = req.body;
+		cust.insertId = results.insertId;
+		cust.title = 'Service Due: ' + req.body.product_name 
+
+		serviceManager.insertEvent(cust, function(response){
+
+			res.redirect('/customers');
+
+		});
 
 	});
 
@@ -75,7 +84,7 @@ app.post('/edit/customer/:id', function (req, res) {
 });
 
 app.post(['/', '/home'], function (req, res) {
-	console.log(req.body);
+
     res.redirect('/customer');
 });
 
@@ -126,6 +135,14 @@ app.get('/invoices', function(req, res){
 
 		res.render('invoices', {invoiceList : results});
 
+	});
+
+});
+
+app.get('/calendar/events', function(req, res){
+
+	serviceManager.getEvents(req.query.start_date, req.query.end_date, function(events){
+		res.json(events);
 	});
 
 });
