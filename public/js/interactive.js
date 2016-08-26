@@ -28,8 +28,8 @@ $(document).ready(function () {
 
 					$('#myModal').modal('show');
 
-					$('#add-event-form').submit(function(e){
-						e.preventDefault();
+					$('button#save-event').click(function(e){
+						// e.preventDefault();
 
 						var for_get = $(this).serialize();
 						var title = $('input[name="title"]').val();
@@ -46,6 +46,7 @@ $(document).ready(function () {
 						}
 
 						$.post('/add/event', eventData, function(res){
+							console.log(eventData)
 							$('#myModal').modal('hide');
 							$('#calendar').fullCalendar('unselect');
 						});
@@ -78,10 +79,10 @@ $(document).ready(function () {
 
 					$('#myModal').modal('show');
 
-					$('#add-event-form').submit(function(e){
-						e.preventDefault();
+					$('button#save-event').click(function(e){
+						// e.preventDefault();
 
-						var for_get = $(this).serialize();
+						// var for_get = $(this).serialize();
 						var title = $('input[name="title"]').val();
 
 						var eventData = {};

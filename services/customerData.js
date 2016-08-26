@@ -94,8 +94,8 @@ module.exports = {
 				company : customer.company,
 				contact : customer.contact,
 				phone : customer.phone,
-				email : email,
-				id : customer_id
+				email : customer.email,
+				id : customer.customer_id
 			}
 
 			conn.query("update tbl_customer " +
