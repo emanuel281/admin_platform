@@ -8,14 +8,25 @@
 
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 
-		<script type="text/javascript" src="/js/jquery-2.2.4.min.js"></script>
-		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="/js/interactive.js"></script>
+		<link href='/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
+		<link href='/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+		<script src='/moment/moment.min.js'></script>
+		<script src='/js/jquery-2.2.4.min.js'></script>
+		<script src='/fullcalendar/fullcalendar.min.js'></script>
 
-		<link rel="stylesheet" type="text/css" href="/fullcalendar/fullcalendar.min.css">
-		<link rel="stylesheet" type="text/css" href="/fullcalendar/fullcalendar.print.css">
-		<script type="text/javascript" src="/moment/moment.min.js"></script>
-		<script type="text/javascript" src="/fullcalendar/fullcalendar.min.js"></script>
+
+		<!--script type="text/javascript" src="/moment/moment.min.js"></script>
+
+		<script type="text/javascript" src="/js/jquery-2.2.4.min.js"></script-->
+		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+		
+
+		<!--link rel="stylesheet" type="text/css" href="/fullcalendar/fullcalendar.min.css">
+		<link rel="stylesheet" type="text/css" href="/fullcalendar/fullcalendar.print.css"-->
+		
+		<!--script type="text/javascript" src="/fullcalendar/fullcalendar.min.js"></script-->
+
+		<script type="text/javascript" src="/js/interactive.js"></script>
 
 		<style type="text/css">
 			li[role="presentation"] {
@@ -39,33 +50,48 @@
 			            </button>
 			            <a class="navbar-brand page-scroll" href="/">EMWC</a>
 			        </div>
-
-			        <!-- Collect the nav links, forms, and other content for toggling -->
-			        {{!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			            <ul class="nav navbar-nav nav-pills navbar-right">
-			            	
-			                <li>
-				                <a class="page-scroll" href="/customers">
-				                	<span class="glyphicon glyphicon-th-list">
-					                    <b>Customers</b>
-				                    </span>
-			                    </a>
-			                </li>
-			                <li>
-				                <a href="/add/customer">
-				                	<span class="glyphicon glyphicon-file">
-						                <b>New Customer</b>
-					                </span>
-				                </a>
-			                </li>
-			            </ul>
-			        </div> --}}
 			        <!-- /.navbar-collapse -->
 			    </div>
 			    <!-- /.container-fluid -->
 			</nav>
 			
 			{{{body}}}
+
+			<div class="container-fluid" id="service-manager">
+
+				<form method="POST" action="/add/event" id="add-event-form">
+
+					<!-- Modal -->
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					  <div class="modal-dialog modal-sm modal-dialog modal-sm" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        <input name="title" type="text" class="modal-title" id="myModalLabel" placeholder="Modal title">
+					      </div>
+					      <div class="modal-body">
+					        <div class="input-group">
+					        	<div class="input-group">
+									<span style="width:20%" class="input-group-addon" id="start">Start</span>
+									<input style="width:80%" type="datetime-local" class="form-control" name="start" placeholder="mm/dd/YYYY HH:mm" aria-describedby="start">
+								</div>
+								<div class="input-group">
+									<span style="width:25%" class="input-group-addon" id="end">End</span>
+									<input style="width:80%" type="datetime-local" class="form-control" name="end" placeholder="mm/dd/YYYY HH:mm" aria-describedby="end">
+								</div>
+					        </div>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        <button type="submit" class="btn btn-primary">Save changes</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+
+				</form>
+
+			</div>
 
 		</div>
 

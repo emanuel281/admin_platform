@@ -129,7 +129,7 @@ app.get('/deactivate/customer/:id', function(req, res){
 
 });
 
-app.get('/invoices', function(req, res){
+app.get(['/invoices', '/customer/transactions'], function(req, res){
 	
 	transactionData.getTransactions(function(results){
 
@@ -141,9 +141,28 @@ app.get('/invoices', function(req, res){
 
 app.get('/calendar/events', function(req, res){
 
+	// console.log(req.body, req.params, req.query)
+	req.query.start_date = new Date(req.query.start_date);
+	req.query.end_date = new Date(req.query.end_date);
+
 	serviceManager.getEvents(req.query.start_date, req.query.end_date, function(events){
 		res.json(events);
 	});
+
+});
+
+app.post('/add/event', function(req, res){
+
+	// console.log(req.query, req.params, req.body)
+	serviceManager.insertEvent(req.body, function(events){
+		res.json(events);
+	});
+
+});
+
+app.get('/home/'+ process.env.USERNAME +'/:filename', function(req, res){
+
+	res.sendFile('/home/admin/'+req.params.filename);
 
 });
 
@@ -152,8 +171,8 @@ app.get('/*' , function (req, res) {
 });
 
 app.post('/*' , function (req, res) {
-	console.log('Not cool!');
-	res.redirect('/customers');
+	console.log(req.body);
+	res.redirect('/home');
 });
 
 var port = 5433;

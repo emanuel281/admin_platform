@@ -24,7 +24,7 @@
 		#calendar {
 			width: 700px;
 			/*height: 200px;*/
-			border: grey solid;
+			/*border: grey solid;*/
 			margin-bottom: 10px;
 		}
 
@@ -32,6 +32,11 @@
 			color: green;
 			margin-bottom: 10px;
 			margin-top: 10px;
+		}
+
+		#insert-calendar {
+			border-top: thin black solid;
+			padding-top: 10px;
 		}
 
 
@@ -47,7 +52,7 @@
 
 		</div>
 
-		<div class="col-lg-12">
+		<div class="col-lg-12" id="insert-calendar">
 			<div id="calendar">
 
 			</div>
@@ -62,16 +67,9 @@
 				<a href="/add/customer">Add Customer</a>
 			</li>
 			<li role="presentation">
-				<a href="/invoices">Customer Transactions</a>
+				<a href="/customer/transactions">Customer Transactions</a>
 			</li>
 		</ul>
-
-	</div>
-
-
-	<div class="container-fluid" id="service-manager">
-
-	
 
 	</div>
 
@@ -87,7 +85,7 @@
 
 	<table id="customer-table" class="table table-striped table-condensed">
 		<thead>
-			<th>Company Name</th><th>Contact</th><th>Phone</th><th>E-mail</th><th>Invoices</th>
+			<th>Company</th><th>Name</th><th>Phone</th><th>E-mail</th><th>Invoices</th>
 		</thead>
 		<tbody>
 		{{#each customerList}}
@@ -128,4 +126,5 @@
 			</div>	
 		</div>
 	{{/each}}
+
 </div>

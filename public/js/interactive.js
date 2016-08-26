@@ -9,37 +9,110 @@ $(document).ready(function () {
 	//   $('#myTabs a[href="#address"]').tab('show');
 	// });
 
-	$('#calendar').fullCalendar({
-		theme : true,
-		businessHours : true,
-		editable : true,
-		header : {
-			left : 'prev,next,today',
-			center : 'title',
-			right : 'month,agendaWeek,agendaDay'
-		},
-		events : function(start, end, timezone, callback){
-			$.get('/calendar/events', 
-				{
-					start_date : '2016-08-24 00:15:00',
-					end_date : '2016-08-24 00:30:00',
-					timezone : timezone
-				}, 
-				function(events){
-					callback(events)
-				});
-		},
-		eventRender : function (event, element, view, callback) {
-			
-			console.log("event: ", event, "element: ", element, "view: ", view, "callback: ", callback);
-			return element;
-
-		}
-	});
+	var i = 0;
 
 	$('#toggle-calendar').click(function(){
 
+		if (i == 0) {
+
+			$('#calendar').fullCalendar({
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
+				defaultDate: new Date(),
+				selectable: true,
+				selectHelper: true,
+				select: function(start, end) {
+
+					$('#myModal').modal('show');
+
+					$('#add-event-form').submit(function(e){
+						e.preventDefault();
+
+						var for_get = $(this).serialize();
+						var title = $('input[name="title"]').val();
+
+						var eventData = {};
+						if (title) {
+							eventData = {
+								title: title,
+								start: $('input[name="start"]').val()?$('input[name="start"]').val():start,
+								end: $('input[name="end"]').val()?$('input[name="end"]').val():end
+							};
+
+							$('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+						}
+
+						$.post('/add/event', eventData, function(res){
+							$('#myModal').modal('hide');
+							$('#calendar').fullCalendar('unselect');
+						});
+
+					});
+				},
+				editable: true,
+				eventLimit: true, // allow "more" link when too many events
+				events : function(start_date, end_date, timezone, callback){
+
+							start_date = new Date(start_date);
+							end_date = new Date(end_date);
+
+								$.get('/calendar/events', 
+									{
+										start_date : start_date,
+										end_date : end_date,
+										timezone : timezone
+									}, 
+									function(eventz){
+										console.log(eventz)
+										callback(eventz);
+									});
+							},
+				eventClick: function(calEvent, jsEvent, view) {
+
+					$('input[name="title"]').val(calEvent.title);
+					$('input[name="start"]').val(calEvent.start);
+					$('input[name="end"]').val(calEvent.end);
+
+					$('#myModal').modal('show');
+
+					$('#add-event-form').submit(function(e){
+						e.preventDefault();
+
+						var for_get = $(this).serialize();
+						var title = $('input[name="title"]').val();
+
+						var eventData = {};
+						if (title) {
+							eventData = {
+								title: title,
+								start: calEvent.start,
+								end: calEvent.end
+							};
+
+							$('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+						}
+						$('#calendar').fullCalendar('unselect');
+
+						$.post('/edit/event', eventData, function(res){
+							$('#myModal').modal('hide');
+						});
+
+					});
+			        $(this).css('border-color', 'red');
+
+			    }
+			});
+
+			i++;
+		}
+		else{
+
 		$('#calendar').toggle({display:false});
+
+		}
 
 	})
 
