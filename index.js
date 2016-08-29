@@ -123,7 +123,7 @@ app.get('/deactivate/customer/:id', function(req, res){
 
 	customerData.deactivateCustomer(req.params.id, function(){
 
-		res.redirect('/customers');
+		res.redirect('/invoices');
 
 	});
 

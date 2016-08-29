@@ -1,0 +1,8 @@
+#page-head {
+	padding-left: 45%;
+	background: #eee;
+}
+
+li[role="presentation"] {
+	border: 3px solid #ddd;
+}

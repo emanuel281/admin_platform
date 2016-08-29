@@ -77,7 +77,7 @@ module.exports = {
 		connectionPool(function(conn){
 
 
-			conn.query("select tbl_transaction.id,customer_id, product_id, company, contact,product_name, invoice_link, comments " +
+			conn.query("select tbl_transaction.id,customer_id, product_id, company, contact,phone,email,product_name, invoice_link, comments " +
 						"from tbl_transaction " + 
 						"join tbl_customer " +
 						"on tbl_customer.id = customer_id " +

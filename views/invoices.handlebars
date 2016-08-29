@@ -1,25 +1,91 @@
 <div class="container-fluid">
 
+	{{#if productList}}
 	<ol class="breadcrumb">
 		<li>
 			<a href="/">Home</a>
 		</li>
-		<li class="active">Invoices</li>
+		<li>
+			<a href="/customers">Customers</a>
+		</li>
+		<li class="active">View Customer</li>
 	</ol>
+	{{else}}
+	<ol class="breadcrumb">
+		<li>
+			<a href="/">Home</a>
+		</li>
+		<li class="active">Customers</li>
+	</ol>
+	{{/if}}
 
-	<h2>Showing Transactions</h2>
+	<style type="text/css">
+
+		#calendar {
+			width: 700px;
+			/*height: 200px;*/
+			/*border: grey solid;*/
+			margin-bottom: 10px;
+		}
+
+		#toggle-calendar {
+			color: green;
+			margin-bottom: 10px;
+			margin-top: 10px;
+		}
+
+		#insert-calendar {
+			border-top: thin black solid;
+			padding-top: 10px;
+		}
+
+
+	</style>
+
+	<div class="container-fluid">
+
+		<div class="col-lg-12">
+
+			<a href="#" id="toggle-calendar" class="col-sm-2 btn btn-default">
+				<b>Toggle Calendar</b>
+			</a>
+
+		</div>
+
+		<div class="col-lg-12" id="insert-calendar">
+			<div id="calendar">
+
+			</div>
+		</div>
+
+	</div>
+
+	<div class="container-fluid">
+
+		<ul class="nav nav-pills nav-justified">
+			<li role="presentation">
+				<a href="/add/customer">Add Customer</a>
+			</li>
+			<li role="presentation">
+				<a href="/customer/transactions">Customer Transactions</a>
+			</li>
+		</ul>
+
+	</div>
 
 	<table id="customer-table" class="table table-striped table-condensed">
 		<thead>
-			<th>TransactionID</th><th>Company Name</th><th>Contact</th><th>Product</th><th>Comments</th><th>Link</th>
+			<th>Company</th><th>Name</th><th>Tel Nr.</th><th>E-mail</th><th>Product</th><th>Comments</th><th>Link</th>
 		</thead>
 		<tbody>
 		{{#each invoiceList}}
 			<tr>
 				<td><a href="/customers/{{this.customer_id}}"><span>{{this.id}}</span></a></td>
 				<td>{{this.company}}</td><td>{{this.contact}}</td>
+				<th>{{this.phone}}</th><th>{{this.email}}</th>
 				<td>{{this.product_name}}</td><td>{{this.comments}}</td><td><a href="{{this.invoice_link}}">{{this.invoice_link}}</a></td>
-				{{!-- <td><a href="/edit/customer/{{this.customer_id}}">Edit</a> </td> --}}
+				<td><a href="/edit/customer/{{this.customer_id}}">Edit</a> </td>
+				<td><a href="/deactivate/customer/{{this.customer_id}}">Deactivate</a></td>
 			</tr>
 		{{/each}}
 		</tbody>

@@ -79,8 +79,8 @@ $(document).ready(function () {
 
 					$('#myModal').modal('show');
 
-					$('button#save-event').click(function(e){
-						// e.preventDefault();
+					$('#add-event-form').submit(function(e){
+						e.preventDefault();
 
 						// var for_get = $(this).serialize();
 						var title = $('input[name="title"]').val();
