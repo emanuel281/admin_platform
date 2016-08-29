@@ -162,7 +162,7 @@ app.post('/add/event', function(req, res){
 
 app.get('/home/'+ process.env.USERNAME +'/:filename', function(req, res){
 
-	res.sendFile('/home/admin/'+req.params.filename);
+	res.sendFile('/home/'+ process.env.USERNAME +'/'+req.params.filename);
 
 });
 
