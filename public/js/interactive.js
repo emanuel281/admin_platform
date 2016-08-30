@@ -26,10 +26,13 @@ $(document).ready(function () {
 				selectHelper: true,
 				select: function(start, end) {
 
+					// $('input[name="start"]').value = (new Date());
+					// $('input[name="end"]').value = (new Date());
+
 					$('#myModal').modal('show');
 
-					$('button#save-event').click(function(e){
-						// e.preventDefault();
+					$('#add-event-form').submit(function(e){
+						e.preventDefault();
 
 						var for_get = $(this).serialize();
 						var title = $('input[name="title"]').val();
@@ -46,7 +49,7 @@ $(document).ready(function () {
 						}
 
 						$.post('/add/event', eventData, function(res){
-							console.log(eventData)
+							// console.log(eventData)
 							$('#myModal').modal('hide');
 							$('#calendar').fullCalendar('unselect');
 						});
@@ -67,7 +70,7 @@ $(document).ready(function () {
 										timezone : timezone
 									}, 
 									function(eventz){
-										console.log(eventz)
+										// console.log(eventz)
 										callback(eventz);
 									});
 							},
@@ -77,7 +80,11 @@ $(document).ready(function () {
 					$('input[name="start"]').val(calEvent.start);
 					$('input[name="end"]').val(calEvent.end);
 
+					// $('input[name="start"]').value = (new Date());
+					// $('input[name="end"]').value = (new Date());
+
 					$('#myModal').modal('show');
+
 
 					$('#add-event-form').submit(function(e){
 						e.preventDefault();
@@ -102,7 +109,7 @@ $(document).ready(function () {
 						});
 
 					});
-			        $(this).css('border-color', 'red');
+					$(this).css('border-color', 'red');
 
 			    }
 			});
