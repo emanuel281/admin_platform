@@ -26,8 +26,9 @@ $(document).ready(function () {
 				selectHelper: true,
 				select: function(start, end) {
 
-					// $('input[name="start"]').value = (new Date());
-					// $('input[name="end"]').value = (new Date());
+					$('input[name="title"]').val(null);
+					$('input[name="start"]').val(null);
+					$('input[name="end"]').val(null);
 
 					$('#myModal').modal('show');
 
@@ -79,9 +80,7 @@ $(document).ready(function () {
 					$('input[name="title"]').val(calEvent.title);
 					$('input[name="start"]').val(calEvent.start);
 					$('input[name="end"]').val(calEvent.end);
-
-					// $('input[name="start"]').value = (new Date());
-					// $('input[name="end"]').value = (new Date());
+					// console.log(calEvent.start, calEvent.end));
 
 					$('#myModal').modal('show');
 

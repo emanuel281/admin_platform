@@ -14,17 +14,18 @@
 		<script src='/js/jquery-2.2.4.min.js'></script>
 		<script src='/fullcalendar/fullcalendar.min.js'></script>
 
-
-		<!--script type="text/javascript" src="/moment/moment.min.js"></script>
-
-		<script type="text/javascript" src="/js/jquery-2.2.4.min.js"></script-->
 		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-		
 
+		<script type="text/javascript" src="/datepicker/bootstrap-datetimepicker.min.js"></script>
 		<!--link rel="stylesheet" type="text/css" href="/fullcalendar/fullcalendar.min.css">
+		
+		<script type="text/javascript" src="/datepicker/transitions.js"></script>
+		<script type="text/javascript" src="/datepicker/collapse.js"></script>
+
 		<link rel="stylesheet" type="text/css" href="/fullcalendar/fullcalendar.print.css"-->
 		
 		<!--script type="text/javascript" src="/fullcalendar/fullcalendar.min.js"></script-->
+		{{!-- <link rel="stylesheet" type="text/css" href="/datepicker/bootstrap-datetimepicker-standalone.min.css"> --}}
 
 		<script type="text/javascript" src="/js/interactive.js"></script>
 		<link rel="stylesheet" type="text/css" href="/css/custom.css">
@@ -72,19 +73,46 @@
 					    <div class="modal-content">
 					      <div class="modal-header">
 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					        <input name="title" type="text" class="modal-title" id="myModalLabel" placeholder="Modal title">
+					        <input name="title" type="text" class="modal-title" id="myModalLabel" placeholder="Modal title" required />
 					      </div>
 					      <div class="modal-body">
-					        <div class="input-group">
-					        	<div class="input-group">
-									<span style="width:20%" class="input-group-addon" id="start">Start</span>
-									<input style="width:80%" type="datetime-local" class="form-control" name="start" placeholder="mm/dd/YYYY HH:mm" aria-describedby="start">
-								</div>
-								<div class="input-group">
-									<span style="width:25%" class="input-group-addon" id="end">End</span>
-									<input style="width:80%" type="datetime-local" class="form-control" name="end" placeholder="mm/dd/YYYY HH:mm" aria-describedby="end">
-								</div>
-					        </div>
+
+					        <div class="container-fluid">
+					        	<div class="row">
+					                <div class='col-lg-6'>
+					                    <div class="form-group">
+					                        <div class='input-group date'>
+					                            <span class="input-group-addon">
+					                                <span class="glyphicon glyphicon-calendar"></span>
+					                            </span>
+					                            <input placeholder="Start Date" name="start" type='text' class="form-control" id='datetimepicker1' required />
+					                        </div>
+					                    </div>
+					                </div>
+					                <script type="text/javascript">
+					                    $(function () {
+					                        $('#datetimepicker1').datetimepicker();
+					                    });
+					                </script>
+					            </div>
+
+				                <div class="row">
+				                    <div class='col-lg-6'>
+				                    	<div class='input-group date'>
+				                    	    <span class="input-group-addon">
+				                    	        <span class="glyphicon glyphicon-calendar"></span>
+				                    	    </span>
+				                    	    <input placeholder="End Date" name="end" type='text' class="form-control" id='datetimepicker4' required />
+				                    	</div>
+				                    </div>
+				                    <script type="text/javascript">
+				                        $(function () {
+				                            $('#datetimepicker4').datetimepicker();
+				                        });
+				                    </script>
+				                </div>
+				            </div>
+
 					      </div>
 					      <div class="modal-footer">
 					        <button type="button" id="save-event" class="btn btn-default" data-dismiss="modal">Close</button>
