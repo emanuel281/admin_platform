@@ -17,15 +17,11 @@
 		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
 		<script type="text/javascript" src="/datepicker/bootstrap-datetimepicker.min.js"></script>
-		<!--link rel="stylesheet" type="text/css" href="/fullcalendar/fullcalendar.min.css">
 		
-		<script type="text/javascript" src="/datepicker/transitions.js"></script>
-		<script type="text/javascript" src="/datepicker/collapse.js"></script>
-
-		<link rel="stylesheet" type="text/css" href="/fullcalendar/fullcalendar.print.css"-->
-		
-		<!--script type="text/javascript" src="/fullcalendar/fullcalendar.min.js"></script-->
-		{{!-- <link rel="stylesheet" type="text/css" href="/datepicker/bootstrap-datetimepicker-standalone.min.css"> --}}
+		<script type="text/javascript" src="/dropzone/dropzone.js"></script>
+		<script type="text/javascript">
+			$("input#invoice_file").dropzone({ url : "/save/invoice" });
+		</script>
 
 		<script type="text/javascript" src="/js/interactive.js"></script>
 		<link rel="stylesheet" type="text/css" href="/css/custom.css">

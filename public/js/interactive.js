@@ -35,7 +35,7 @@ $(document).ready(function () {
 					$('#add-event-form').submit(function(e){
 						e.preventDefault();
 
-						var for_get = $(this).serialize();
+						// var for_get = $(this).serialize();
 						var title = $('input[name="title"]').val();
 
 						var eventData = {};

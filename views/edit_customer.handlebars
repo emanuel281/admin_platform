@@ -10,33 +10,34 @@
 		<li class="active">Edit Customer</li>
 	</ol>
 
+	<style type="text/css">
+
+		#calendar {
+			width: 100%;
+			/*height: 200px;*/
+			/*border: grey solid;*/
+			margin-bottom: 10px;
+		}
+
+		#toggle-calendar {
+			color: green;
+			margin-bottom: 10px;
+			margin-top: 10px;
+		}
+
+		#insert-calendar {
+			border-top: thin black solid;
+			padding-top: 10px;
+		}
+
+
+	</style>
+
+
 	{{#each customerList}}
-	<form class="form" id="edit-customer" action="/edit/customer/{{this.id}}" method="POST">
+	<form class="form" id="edit-customer" action="/edit/customer/{{this.id}}" method="POST" enctype="multipart/form-data">
 	{{/each}}
 		<div class="col-md-6 pull-right">
-
-			<style type="text/css">
-
-				#calendar {
-					width: 100%;
-					/*height: 200px;*/
-					/*border: grey solid;*/
-					margin-bottom: 10px;
-				}
-
-				#toggle-calendar {
-					color: green;
-					margin-bottom: 10px;
-					margin-top: 10px;
-				}
-
-				#insert-calendar {
-					border-top: thin black solid;
-					padding-top: 10px;
-				}
-
-
-			</style>
 
 			<div class="container-fluid">
 
@@ -107,12 +108,12 @@
 
 								<div class="input-group">
 								  <span style="width:100px" class="input-group-addon" id="invoice_link">Invoice</span>
-								  <input style="width:300px" name="invoice_link" type="text" class="form-control" placeholder="" value="{{this.invoice_link}}" aria-describedby="invoice_link">
+								  <input style="width:300px" name="invoice_file" type="file" class="form-control" placeholder="" value="{{this.invoice_file}}" aria-describedby="invoice_link">
 								</div>
 
 								<div class="input-group">
 								  <span style="width:100px" class="input-group-addon" id="comments">Comments</span>
-								  <textarea style="width:300px" name="comments" type="text" class="form-control" placeholder="" aria-describedby="comments">{{this.invoice_link}}</textarea>
+								  <textarea style="width:300px" name="comments" type="text" class="form-control" placeholder="" aria-describedby="comments">{{this.comments}}</textarea>
 								</div>
 								{{/each}}
 

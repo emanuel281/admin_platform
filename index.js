@@ -2,6 +2,8 @@ var express = require('express');
 var exphbs  = require('express-handlebars');
 var app = express();
 
+var fs = require('fs-extra');
+var formidable = require('formidable');
 
 var bodyParser = require('body-parser');
 // parse application/x-www-form-urlencoded 
@@ -45,19 +47,33 @@ app.get('/add/customer', function (req, res) {
 
 app.post('/add/customer', function (req, res) {
 
-	dataServices.insertTransaction(req.body, function(results){
+	// console.log(req)
 
-		var cust = req.body;
-		cust.insertId = results.insertId;
-		cust.title = 'Service Due: ' + req.body.product_name 
+	// fs.readFile(req.files.displayImage.path,function(err, data){
 
-		serviceManager.insertEvent(cust, function(response){
+	// 	var newPath = __dirname + '/invoices/' + req.files.displayImage.name;
 
-			res.redirect('/customers');
+	// 	fs.writeFile(req.files.displayImage.path, function(err, data){
+	// 		if (err) throw err;
 
-		});
+	// 		req.body.invoice_link = req.files.displayImage.name;
 
-	});
+			dataServices.insertTransaction(req.body, function(results){
+
+				var cust = req.body;
+				cust.insertId = results.insertId;
+				cust.title = 'Service Due: ' + req.body.product_name 
+
+				serviceManager.insertEvent(cust, function(response){
+
+					res.redirect('/invoices');
+
+				});
+
+			});
+
+	// 	});
+	// });
 
 });
 
@@ -76,11 +92,41 @@ app.get('/edit/customer/:id', function (req, res) {
 
 app.post('/edit/customer/:id', function (req, res) {
 
-	transactionData.updateTransaction(req.body, function(){
+	var form = new formidable.IncomingForm();
 
-		res.redirect('/customers');
+	form.parse(req, function(err, fields, file) {
 
-	});
+		fields.invoice_link = file.invoice_file.name;
+		console.log(file)
+
+		transactionData.updateTransaction(fields, function(results){
+
+	    	res.redirect('/invoices');
+
+		});
+
+    });
+
+    form.on('end', function(fields, files) {
+        /* Temporary location of our uploaded file */
+        var temp_path = this.openedFiles[0].path;
+        /* The file name of the uploaded file */
+        var file_name = this.openedFiles[0].name;
+        /* Location where we want to copy the uploaded file */
+        var new_location =  __dirname  + '/invoices/';
+ 
+        fs.copy(temp_path, new_location + file_name, function(error) {  
+            if (error) throw error;
+
+
+        });
+    });
+
+    form.on('error', function(err) {
+            console.error(err);
+        });
+
+
 });
 
 app.post(['/', '/home'], function (req, res) {
@@ -160,9 +206,9 @@ app.post('/add/event', function(req, res){
 
 });
 
-app.get('/home/'+ process.env.USERNAME +'/:filename', function(req, res){
+app.get('/invoices/:filename', function(req, res){
 
-	res.sendFile('/home/'+ process.env.USERNAME +'/'+req.params.filename);
+	res.sendFile(__dirname + '/invoices/'+req.params.filename);
 
 });
 

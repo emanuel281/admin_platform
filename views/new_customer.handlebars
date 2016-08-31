@@ -10,7 +10,7 @@
 		<li class="active">New Customer</li>
 	</ol>
 
-	<form class="form" action="/add/customer" method="POST">
+	<form class="form" action="/add/customer" method="POST" enctype="multipart/form-data">
 
 		<div class="col-md-12">
 
@@ -54,7 +54,7 @@
 
 								<div class="input-group">
 								  <span style="width:100px" class="input-group-addon" id="invoice_link">Invoice</span>
-								  <input style="width:300px" name="invoice_link" type="text" class="form-control" placeholder="" aria-describedby="invoice_link">
+								  <input style="width:300px" name="invoice_file" type="file" class="form-control" placeholder="" aria-describedby="invoice_link">
 								</div>
 
 								<div class="input-group">
