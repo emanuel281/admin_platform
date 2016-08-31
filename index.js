@@ -47,33 +47,43 @@ app.get('/add/customer', function (req, res) {
 
 app.post('/add/customer', function (req, res) {
 
-	// console.log(req)
+	var form = new formidable.IncomingForm();
 
-	// fs.readFile(req.files.displayImage.path,function(err, data){
+	form.parse(req, function(err, fields, file) {
 
-	// 	var newPath = __dirname + '/invoices/' + req.files.displayImage.name;
+		fields.invoice_link = file.invoice_file.name;
 
-	// 	fs.writeFile(req.files.displayImage.path, function(err, data){
-	// 		if (err) throw err;
+		dataServices.insertTransaction(fields, function(results){
 
-	// 		req.body.invoice_link = req.files.displayImage.name;
+			var cust = fields;
+			cust.insertId = results.insertId;
+			cust.title = 'Service Due: ' + fields.product_name 
 
-			dataServices.insertTransaction(req.body, function(results){
+			serviceManager.insertEvent(cust, function(response){
 
-				var cust = req.body;
-				cust.insertId = results.insertId;
-				cust.title = 'Service Due: ' + req.body.product_name 
-
-				serviceManager.insertEvent(cust, function(response){
-
-					res.redirect('/invoices');
-
-				});
+				res.redirect('/invoices');
 
 			});
 
-	// 	});
-	// });
+		});
+    });
+
+    form.on('end', function(fields, files) {
+        /* Temporary location of our uploaded file */
+        var temp_path = this.openedFiles[0].path;
+        /* The file name of the uploaded file */
+        var file_name = this.openedFiles[0].name;
+        /* Location where we want to copy the uploaded file */
+        var new_location =  __dirname  + '/invoices/';
+ 
+        fs.copy(temp_path, new_location + file_name, function(error) {  
+            if (error) throw error;
+        });
+    });
+
+    form.on('error', function(err) {
+        console.error(err);
+    });
 
 });
 
@@ -97,7 +107,6 @@ app.post('/edit/customer/:id', function (req, res) {
 	form.parse(req, function(err, fields, file) {
 
 		fields.invoice_link = file.invoice_file.name;
-		console.log(file)
 
 		transactionData.updateTransaction(fields, function(results){
 
@@ -125,7 +134,6 @@ app.post('/edit/customer/:id', function (req, res) {
     form.on('error', function(err) {
             console.error(err);
         });
-
 
 });
 
