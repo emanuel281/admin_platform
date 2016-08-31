@@ -221,12 +221,12 @@ app.get('/invoices/:filename', function(req, res){
 });
 
 app.get('/*' , function (req, res) {
-	res.redirect('/home');
+	res.redirect('/invoices');
 });
 
 app.post('/*' , function (req, res) {
-	console.log(req.body);
-	res.redirect('/home');
+	
+	res.redirect('/invoices');
 });
 
 var port = 5433;
