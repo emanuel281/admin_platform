@@ -50,7 +50,7 @@ $(document).ready(function () {
 						}
 
 						$.post('/add/event', eventData, function(res){
-							// console.log(eventData)
+							console.log(eventData);
 							$('#myModal').modal('hide');
 							$('#calendar').fullCalendar('unselect');
 						});
@@ -104,6 +104,7 @@ $(document).ready(function () {
 						$('#calendar').fullCalendar('unselect');
 
 						$.post('/edit/event', eventData, function(res){
+							console.log(eventData);
 							$('#myModal').modal('hide');
 						});
 
