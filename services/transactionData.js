@@ -31,9 +31,9 @@ module.exports = {
 
 		connectionPool(function(conn){
 
-			conn.query("insert into tbl_transaction (customer_id, product_id, invoice_link, comments) " +
-						"values(?,?,?,?)",
-						[transaction.customer_id, transaction.product_id, transaction.invoice_link, transaction.comments],
+			conn.query("insert into tbl_transaction (customer_id, product_id, invoice_link, comments, invoice_file) " +
+						"values(?,?,?,?,?)",
+						[transaction.customer_id, transaction.product_id, transaction.invoice_link, transaction.comments, transaction.invoice_file],
 						function(err, results){
 							if(err) throw err;
 
@@ -77,7 +77,7 @@ module.exports = {
 		connectionPool(function(conn){
 
 
-			conn.query("select tbl_transaction.id,customer_id, product_id, company, contact,phone,email,product_name, invoice_link, comments " +
+			conn.query("select tbl_transaction.id,customer_id, product_id, company, contact,phone,email,product_name, invoice_link, comments, tbl_transaction.invoice_file " +
 						"from tbl_transaction " + 
 						"join tbl_customer " +
 						"on tbl_customer.id = customer_id " +

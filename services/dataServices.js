@@ -17,9 +17,10 @@ module.exports = {
 					
 					var transaction = { 
 						customer_id : customer_results.insertId,  product_id : product_results.insertId, 
-						invoice_link : customer.invoice_link,  comments : customer.comments
+						invoice_link : customer.invoice_link,  comments : customer.comments,
+						invoice_file : customer.invoice_file
 					}
-					console.log(customer_results, product_results, transaction);
+					// console.log(customer_results, product_results, transaction);
 
 					transactionData.insertTransaction(transaction, function(transaction_results){
 

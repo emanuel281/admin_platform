@@ -51,7 +51,7 @@ app.post('/add/customer', function (req, res) {
 
 	form.parse(req, function(err, fields, file) {
 
-		fields.invoice_link = file.invoice_file.name;
+		fields.invoice_file = file.invoice_file.name;
 
 		dataServices.insertTransaction(fields, function(results){
 
