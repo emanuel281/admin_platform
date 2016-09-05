@@ -8,7 +8,7 @@ module.exports = {
 
 		connectionPool(function(conn){
 
-			conn.query("select tbl_transaction.id,customer_id, product_id,product_name, invoice_link, comments " +
+			conn.query("select tbl_transaction.id,customer_id, product_id,product_name, invoice_link, comments, invoice_file " +
 						"from tbl_transaction " + 
 						"join tbl_customer " +
 						"on tbl_customer.id = customer_id " +
@@ -56,8 +56,9 @@ module.exports = {
 					conn.query("update tbl_transaction " +
 								"set invoice_link = ?, " +
 								"comments = ? " +
+								((customer.invoice_file !== null || customer.invoice_file !== "")?",invoice_file = ? " : " ") +
 								"where id = ?", 
-								[customer.invoice_link, customer.comments, customer.transaction_id],								
+								[customer.invoice_link, customer.comments, customer.invoice_file, customer.transaction_id],								
 								function(err, results){
 									if (err) throw err;
 									

@@ -106,7 +106,7 @@ app.post('/edit/customer/:id', function (req, res) {
 
 	form.parse(req, function(err, fields, file) {
 
-		fields.invoice_link = file.invoice_file.name;
+		fields.invoice_file = file.invoice_file.name;
 
 		transactionData.updateTransaction(fields, function(results){
 
