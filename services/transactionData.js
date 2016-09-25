@@ -50,14 +50,14 @@ module.exports = {
 			productData.insertProduct(customer.product_name, function(product_results){
 
 				customerData.updateCustomer(customer, function(customer_results){
-		
-					console.log("customer.invoice_link =", customer.invoice_link.length);
 
 					var insert_string = "update tbl_transaction " +
 								"set comments = ? " +
-								((customer.invoice_link !== "")?",invoice_link = " + customer.invoice_link +" ":" ") +
-								((customer.invoice_file !== "")?",invoice_file = " + customer.invoice_file + " " : " ") +
+								((customer.invoice_link !== "")?",invoice_link = '" + customer.invoice_link +"' ":" ") +
+								((customer.invoice_file !== "")?",invoice_file = '" + customer.invoice_file + "' " : " ") +
 								"where id = ?";
+
+								console.log(JSON.stringify(insert_string))
 
 					conn.query(insert_string, 
 								[customer.comments, customer.transaction_id],								
