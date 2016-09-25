@@ -52,6 +52,7 @@ app.post('/add/customer', function (req, res) {
 	form.parse(req, function(err, fields, file) {
 
 		fields.invoice_file = file.invoice_file.name;
+		fields.invoice_link = file.invoice_file.name;
 
 		dataServices.insertTransaction(fields, function(results){
 
@@ -107,6 +108,8 @@ app.post('/edit/customer/:id', function (req, res) {
 	form.parse(req, function(err, fields, file) {
 
 		fields.invoice_file = file.invoice_file.name;
+		fields.invoice_link = file.invoice_file.name;
+
 
 		transactionData.updateTransaction(fields, function(results){
 
@@ -124,11 +127,11 @@ app.post('/edit/customer/:id', function (req, res) {
         /* Location where we want to copy the uploaded file */
         var new_location =  __dirname  + '/invoices/';
  
-        fs.copy(temp_path, new_location + file_name, function(error) {  
-            if (error) throw error;
-
-
-        });
+        if (file_name !== '') {
+        	fs.copy(temp_path, new_location + file_name, function(error) {  
+	            if (error) throw error;
+	        });
+        }
     });
 
     form.on('error', function(err) {

@@ -49,16 +49,18 @@ module.exports = {
 
 			productData.insertProduct(customer.product_name, function(product_results){
 
-
 				customerData.updateCustomer(customer, function(customer_results){
-
 		
-					conn.query("update tbl_transaction " +
-								"set invoice_link = ?, " +
-								"comments = ? " +
-								((customer.invoice_file !== null || customer.invoice_file !== "")?",invoice_file = ? " : " ") +
-								"where id = ?", 
-								[customer.invoice_link, customer.comments, customer.invoice_file, customer.transaction_id],								
+					console.log("customer.invoice_link =", customer.invoice_link.length);
+
+					var insert_string = "update tbl_transaction " +
+								"set comments = ? " +
+								((customer.invoice_link !== "")?",invoice_link = " + customer.invoice_link +" ":" ") +
+								((customer.invoice_file !== "")?",invoice_file = " + customer.invoice_file + " " : " ") +
+								"where id = ?";
+
+					conn.query(insert_string, 
+								[customer.comments, customer.transaction_id],								
 								function(err, results){
 									if (err) throw err;
 									
