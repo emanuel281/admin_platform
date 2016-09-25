@@ -12,15 +12,13 @@ module.exports = {
 		//Still need to change input name in the front end to match database names
 			customerData.insertCustomer(customer, function(customer_results){
 
-				productData.insertProduct(customer.product_name, function(product_results){
-					console.log(customer)
+				productData.insertProduct(customer, function(product_results){
 					
 					var transaction = { 
 						customer_id : customer_results.insertId,  product_id : product_results.insertId, 
 						invoice_link : customer.invoice_link,  comments : customer.comments,
 						invoice_file : customer.invoice_file
 					}
-					// console.log(customer_results, product_results, transaction);
 
 					transactionData.insertTransaction(transaction, function(transaction_results){
 

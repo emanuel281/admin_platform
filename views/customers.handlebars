@@ -85,13 +85,13 @@
 
 	<table id="customer-table" class="table table-striped table-condensed">
 		<thead>
-			<th>Company</th><th>Name</th><th>Phone</th><th>E-mail</th><th>Invoices</th>
+			<th>Company</th><th>Name</th><th>Phone</th><th>Phone2</th><th>Phone3</th><th>E-mail</th><th>Invoices</th>
 		</thead>
 		<tbody>
 		{{#each customerList}}
 			<tr>
 				<td>{{this.company}}</td><td>{{this.contact}}</td>
-				<td>{{this.phone}}</td><td>{{this.email}}</td>
+				<td>{{this.phone}}</td><td>{{this.phone2}}</td><td>{{this.phone3}}</td><td>{{this.email}}</td>
 				<td>
 					<a href="/customers/{{this.id}}"><span>View</span></a>
 				</td>

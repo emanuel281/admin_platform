@@ -148,6 +148,13 @@ app.get('/products', function (req, res) {
 	});
 });
 
+app.post('/add/product', function (req, res) {
+	productData.insertProduct(req.body, function(){
+		res.redirect('/products');
+	});
+});
+
+
 app.post('/customers/all', function (req, res) {
 	customerData.getCustomers(function (customerList) {
 		res.send(customerList);

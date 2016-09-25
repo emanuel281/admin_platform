@@ -6,7 +6,7 @@ module.exports = {
 
 		connectionPool(function(conn){
 
-			conn.query("select id, product_name from tbl_product", function(err, results){
+			conn.query("select id, product_name, product_desc from tbl_product", function(err, results){
 				if(err) throw err;
 
 					return cb(results);
@@ -16,15 +16,19 @@ module.exports = {
 		});
 
 	},
-	insertProduct : function(product_name, cb){
+	insertProduct : function(customer, cb){
 
 		connectionPool(function(conn){
 
-			conn.query("insert into tbl_product(product_name) values(?)", product_name,
+			var insert_prod = "insert into tbl_product(product_name) values(?)";
+			var insert_prod_desc = "insert into tbl_product(product_name, product_desc) values(?,?)";
+			var insert_query = (undefined == customer.product_desc)?insert_prod:insert_prod_desc;
+
+			conn.query(insert_query, [customer.product_name, customer.product_desc], 
 						function(err, results){
 
 							if (err &&err.errno == 1062) {
-								return conn.query("select id from tbl_product where product_name = ?", product_name, function(err, results2){
+								return conn.query("select id from tbl_product where product_name = ?", customer.product_name, function(err, results2){
 									results2.insertId = results2[0].id;
 									cb(results2);
 								});;
