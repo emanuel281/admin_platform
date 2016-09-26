@@ -18,7 +18,10 @@
 				<ul class="nav nav-tabs" id="myTabs" role="tablist">
 					
 					<li role="presentation" class="">
-						<a href="#personal-info" id="personal-info-tab" role="tab" data-toggle="tab" aria-controls="personal-info" aria-expanded="true">Personal Info</a>
+						<a href="#personal-info" id="personal-info-tab" role="tab" data-toggle="tab" aria-controls="personal-info" aria-expanded="false">Personal Info</a>
+					</li>
+					<li role="presentation" class="">
+						<a href="#address" id="address-tab" role="tab" data-toggle="tab" aria-controls="address" aria-expanded="false">Address</a>
 					</li>
 				</ul>
 
@@ -67,31 +70,38 @@
 								  <input style="width:300px" name="invoice_file" type="file" class="form-control" placeholder="" aria-describedby="invoice_file" required>
 								</div>
 
-								{{!-- <div class="input-group">
-								  <span style="width:100px" class="input-group-addon" id="invoice_link">Inv. Name</span>
-								  <input style="width:300px" name="invoice_link" type="text" class="form-control" placeholder="" aria-describedby="invoice_link" required>
-								</div> --}}
-
 								<div class="input-group">
 								  <span style="width:100px" class="input-group-addon" id="comments">Comments</span>
 								  <textarea style="width:300px" name="comments" type="text" class="form-control" placeholder="" aria-describedby="comments"></textarea>
 								</div>
 
-								{{!-- <div class="input-group">
-								  <span style="width:100px" class="input-group-addon" id="start">Servc. Date</span>
-								  <input style="width:300px" name="start" type="datepicker" class="form-control" placeholder="2016-08-28" aria-describedby="start"/>
-								</div>
+							</div>	
+						</div>
+
+						<div class="col-md-12 pull-right">
+							<div  id="address-detail">
+								<a href="#address" id="address-tab" role="tab" data-toggle="tab" aria-controls="address" aria-expanded="false" class="btn btn-success col-lg-2">Next</a>
+							</div>
+							
+							<a href="/invoices" class="btn btn-default col-md-offset-1">cancel</a>
+						</div>
+
+					</div>
+
+					<div class="tab-pane fade" role="tabpanel" id="address" aria-labelledby="address-tab">
+						<div class="panel panel-default col-md-6">
+							<div class="panel-body">
 
 								<div class="input-group">
-								  <span style="width:100px" class="input-group-addon" id="end">Servc. Type</span>
-								  <input style="width:300px" name="end" type="text" class="form-control" placeholder="" aria-describedby="end"/>
-								</div> --}}
+								  <span style="width:100px" class="input-group-addon" id="address">Address</span>
+								  <textarea style="width:300px" type="text" class="form-control" name="address" placeholder="Address" aria-describedby="address" required></textarea>
+								</div>
 
 							</div>	
 						</div>
 
 						<div class="col-md-12 pull-right">
-							<div  id="next-detail">
+							<div  id="save-details">
 								<button class="btn btn-success col-md-2">Save</button>
 							</div>
 							

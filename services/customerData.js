@@ -1,4 +1,5 @@
 var connectionPool = require('./handle_database.js').handle_database;
+var locationData = require('./locationData.js');
 
 module.exports = {
 	getCustomers : function (order_by, cb) {
@@ -48,9 +49,8 @@ module.exports = {
 						[customer.company, customer.contact, customer.phone, customer.email],
 						function(err, results){
 							if(err) throw err;
-
+							
 							cb(results);
-
 						});
 
 		});
