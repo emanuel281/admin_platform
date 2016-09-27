@@ -57,8 +57,6 @@ module.exports = {
 								((customer.invoice_file !== "")?",invoice_file = '" + customer.invoice_file + "' " : " ") +
 								"where id = ?";
 
-								console.log(JSON.stringify(insert_string))
-
 					conn.query(insert_string, 
 								[customer.comments, customer.transaction_id],								
 								function(err, results){
