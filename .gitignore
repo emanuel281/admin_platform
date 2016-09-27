@@ -84,6 +84,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-./db_config.json
-./db_config.js
+db_config.json
+db_config.js
+goldmine_config.json
 invoices
