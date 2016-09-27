@@ -151,6 +151,12 @@ app.get('/products', function (req, res) {
 	});
 });
 
+app.get('/api/products', function (req, res) {
+	productData.getProducts(function (response) {
+		res.send(response);
+	});
+});
+
 app.post('/add/product', function (req, res) {
 	productData.insertProduct(req.body, function(){
 		res.redirect('/products');
