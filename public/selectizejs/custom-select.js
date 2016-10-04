@@ -56,7 +56,7 @@ $(document).ready(function(){
     if($('#products').length){
         $.get('/api/products', function(options){
 
-            list_products($("#product_list"), options);
+            // list_products($("#product_list"), options);
                 
             var curr_prods = [];
             $('#products').val(JSON.stringify(options));
