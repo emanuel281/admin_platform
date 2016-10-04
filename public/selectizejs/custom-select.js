@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
     var selected_products = {};
+    var selected_products_string = "";
 
     function add_product(product, res_map, $input){
 
@@ -17,10 +18,10 @@ $(document).ready(function(){
         return str;
     }
 
-    function remove_product(product_name, res_map, $input) {
+    function remove_product(product, res_map, $input) {
 
-        if (res_map[product_name] !== undefined)
-            delete res_map[product_name];
+        if (res_map[product.product_name] !== undefined)
+            delete res_map[product.product_name];
         
         var keys = Object.keys(res_map);        
         var str = res_map[keys[0]].product_name;
@@ -34,6 +35,8 @@ $(document).ready(function(){
 
     function list_products($target_div, product_list) {
         
+        $target_div[0].innerHTML = "";
+
         for (var i = 0; i < product_list.length; i++) {
 
             if ((product_list[i].product_name).replace(/\s/g, '').length){
@@ -45,7 +48,7 @@ $(document).ready(function(){
     
                 checkbox.type = "checkbox";    // make the element a checkbox
                 checkbox.name = "slct[]";      // give it a name we can check on the server side
-                checkbox.value = product_list[i].product_name;         // make its value "pair"
+                checkbox.value = JSON.stringify(product_list[i]);         // make its value "pair"
     
                 label.appendChild(checkbox);   // add the box to the element
                 label.appendChild(description);// add the description to the element
@@ -58,29 +61,59 @@ $(document).ready(function(){
     }
 
     if($('#products').length){
-        $.get('/api/products', function(options){
+        // $.get('/api/products', function(options){
 
-            // list_products($("#product_list"), options);
                 
-            var curr_prods = [];
-            $('#products').val(JSON.stringify(options));
+        //     var curr_prods = [];
+        //     // $('#products').val(JSON.stringify(options));
 
-            var returned = "";
-            returned = add_product(options[0], selected_products, $('#products'));
-            returned = add_product(options[1], selected_products, $('#products'));
-            
-            returned = remove_product(options[0].product_name, selected_products, $('#products'));
-            returned = add_product(options[0], selected_products, $('#products'));
+        //     var selected_products_string = "";
+        //     list_products($("#list-here"), options);
 
-            $("#products").val(returned);
+        //     $('input:checkbox').change(
+        //         function(){
+        //             if ($(this).is(':checked')) {
+        //                 selected_products_string = add_product(this.value, selected_products, $('#products'));
+        //             }
+        //             else if(!$(this).is(':checked')){
+        //                 selected_products_string = remove_product(this.value, selected_products, $('#products'));
+        //             }
+        //         });
 
-            list_products($("#list-here"), options);
+        //     $("#products").val(selected_products_string);
 
-        });
+        // });
     };
 
     $("#products").click(function(){
-        console.log("Nothing to see here...")
-        $("#productsList").modal("show");
+        $.get('/api/products', function(options){
+
+                
+            var curr_prods = [];
+            
+            list_products($("#list-here"), options);
+
+
+            console.log("Nothing to see here...")
+            $("#productsList").modal("show");
+
+            $('input:checkbox').change(
+                function(){
+                    if ($(this).is(':checked')) {
+                        var this_value = JSON.parse(this.value);
+                        console.log(this_value);
+                        selected_products_string = add_product(this_value, selected_products, $('#products'));
+                    }
+                    else if(!$(this).is(':checked')){
+                        var this_value = JSON.parse(this.value);
+                        selected_products_string = remove_product(this_value, selected_products, $('#products'));
+                    }
+
+                    $("#save-products").click(function(){
+                        $("#products").val(selected_products_string);
+                    });
+                });
+
+        });
     });
 });
