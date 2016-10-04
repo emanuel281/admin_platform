@@ -35,20 +35,24 @@ $(document).ready(function(){
     function list_products($target_div, product_list) {
         
         for (var i = 0; i < product_list.length; i++) {
-            // create the necessary elements
-            var label= document.createElement("label");
-            var description = document.createTextNode(product_list[i].product_name);
-            var checkbox = document.createElement("input");
 
-            checkbox.type = "checkbox";    // make the element a checkbox
-            checkbox.name = "slct[]";      // give it a name we can check on the server side
-            checkbox.value = product_list[i].product_name;         // make its value "pair"
-
-            label.appendChild(checkbox);   // add the box to the element
-            label.appendChild(description);// add the description to the element
-
-            // add the label element to your div
-            $target_div[0].appendChild(label);
+            if ((product_list[i].product_name).replace(/\s/g, '').length){
+            
+                // create the necessary elements
+                var label= document.createElement("label");
+                var description = document.createTextNode(product_list[i].product_name);
+                var checkbox = document.createElement("input");
+    
+                checkbox.type = "checkbox";    // make the element a checkbox
+                checkbox.name = "slct[]";      // give it a name we can check on the server side
+                checkbox.value = product_list[i].product_name;         // make its value "pair"
+    
+                label.appendChild(checkbox);   // add the box to the element
+                label.appendChild(description);// add the description to the element
+    
+                // add the label element to your div
+                $target_div[0].appendChild(label);
+            }
         }
 
     }
