@@ -17,22 +17,32 @@ module.exports = {
 				
 				locationData.insertLocation(customer, function(locResults){
 
-					productData.insertProduct(customer, function(product_results){
+					var customer_prods = customer.product_name.split(",");
+
+					customer_prods.forEach(function(elem, index){
 						
-						var transaction = { 
-							customer_id : customer_results.insertId,  product_id : product_results.insertId, 
-							invoice_link : customer.invoice_link,  comments : customer.comments,
-							invoice_file : customer.invoice_file,
-							location_id : locResults.insertId
-						}
+						customer.product_name = elem;
 
-						transactionData.insertTransaction(transaction, function(transaction_results){
+						productData.insertProduct(customer, function(product_results){
+							
+							var transaction = { 
+								customer_id : customer_results.insertId,  product_id : product_results.insertId, 
+								invoice_link : customer.invoice_link,  comments : customer.comments,
+								invoice_file : customer.invoice_file,
+								location_id : locResults.insertId
+							}
 
-							cb(transaction_results);
+							transactionData.insertTransaction(transaction, function(transaction_results){
+
+								if (index == customer_prods.length-1)
+									cb(transaction_results);
+
+							});
 
 						});
-
 					});
+
+					
 
 				});
 

@@ -12,7 +12,7 @@ $(document).ready(function(){
         var str = res_map[keys[0]].product_name;
 
         for(var k = 1; k < keys.length; k++){            
-            str += " ," + res_map[keys[k]].product_name;
+            str += "," + res_map[keys[k]].product_name;
         }
 
         return str;
