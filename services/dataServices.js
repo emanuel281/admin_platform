@@ -32,7 +32,7 @@ module.exports = {
 								location_id : locResults.insertId
 							}
 
-							transactionData.insertTransaction(transaction, function(transaction_results){
+							transactionData.insertTrans(transaction, function(transaction_results){
 
 								if (index == customer_prods.length-1)
 									cb(transaction_results);

@@ -27,13 +27,13 @@ module.exports = {
 		});
 
 	},
-	insertTransaction : function(transaction, cb){
+	insertTrans : function(transaction, cb){
 
 		connectionPool(function(conn){
 
-			conn.query("insert into tbl_transaction (customer_id, product_id, invoice_link, comments, invoice_file) " +
-						"values(?,?,?,?,?)",
-						[transaction.customer_id, transaction.product_id, transaction.invoice_link, transaction.comments, transaction.invoice_file],
+			conn.query("insert into tbl_transaction (customer_id, product_id, invoice_link, comments, invoice_file, location_id) " +
+						"values(?,?,?,?,?,?)",
+						[transaction.customer_id, transaction.product_id, transaction.invoice_link, transaction.comments, transaction.invoice_file, transaction.location_id],
 						function(err, results){
 							if(err) throw err;
 
