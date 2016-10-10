@@ -88,3 +88,4 @@ db_config.json
 db_config.js
 goldmine_config.json
 invoices
+deploy_script.sh

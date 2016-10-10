@@ -8,13 +8,16 @@ module.exports = {
 
 		connectionPool(function(conn){
 
-			conn.query("select tbl_transaction.id,customer_id, product_id,product_name, invoice_link, comments, invoice_file " +
+			conn.query("select tbl_transaction.id,tbl_transaction.customer_id, tbl_location.address,product_id,product_name, " +
+						"invoice_link, comments, invoice_file " +
 						"from tbl_transaction " + 
 						"join tbl_customer " +
-						"on tbl_customer.id = customer_id " +
+						"on tbl_customer.id = tbl_transaction.customer_id " +
 						"join tbl_product " +
 						"on tbl_product.id = product_id " +
-						"where customer_id = ? " +
+						"join tbl_location " +
+						"on tbl_customer.id = tbl_location.customer_id " +
+						"where tbl_transaction.customer_id = ? " +
 						"and active = 1",
 						customer_id,
 						function(err, results){
