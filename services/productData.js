@@ -7,7 +7,7 @@ module.exports = {
 		connectionPool(function(conn){
 
 			conn.query("select id, product_name, product_desc from tbl_product \
-				where product_name is not null and product_desc is null", function(err, results){
+				where product_name is not null", function(err, results){
 				if(err) throw err;
 
 					return cb(results);

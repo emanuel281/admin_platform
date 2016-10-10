@@ -62,7 +62,7 @@ app.post('/add/customer', function (req, res) {
 
 			serviceManager.insertEvent(cust, function(response){
 
-				res.redirect('/invoices');
+				res.redirect('/customers');
 
 			});
 
@@ -113,7 +113,7 @@ app.post('/edit/customer/:id', function (req, res) {
 
 		transactionData.updateTransaction(fields, function(results){
 
-	    	res.redirect('/invoices');
+	    	res.redirect('/customers');
 
 		});
 
